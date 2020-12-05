@@ -20,6 +20,7 @@ import javax.net.ssl.X509TrustManager
 
 val TAG = "###"
 
+
 @Throws(
     CertificateException::class,
     FileNotFoundException::class,
@@ -32,22 +33,8 @@ fun initTrustStore(context: Context) : TrustManagerFactory {
     val keyStoreType: String = KeyStore.getDefaultType()
     val trustedKeyStore: KeyStore = KeyStore.getInstance(keyStoreType)
 
-    val fis = context.resources.openRawResource(R.raw.mystore)
-    //val fis = FileInputStream("res/raw/mystore.bks")
-
-    trustedKeyStore.load(fis, "ez24get".toCharArray())
-    /*val cf: CertificateFactory = CertificateFactory.getInstance("X.509")
-    val caInput: InputStream = BufferedInputStream(
-        resources.assets.open("ca.crt")
-    )
-    val ca: Certificate
-    try {
-        ca = cf.generateCertificate(caInput)
-        Log.d(TAG, "ca-root DN=" + (ca as X509Certificate).getSubjectDN())
-    } finally {
-        caInput.close()
-    }
-    trustedKeyStore.setCertificateEntry("ca", ca)*/
+    val fis = context.resources.openRawResource(R.raw.trusted_root)
+    trustedKeyStore.load(fis, "yFD21CvcYm".toCharArray())
 
     // Create a TrustManager that trusts the CAs in our KeyStore
     val tmfAlgorithm: String = TrustManagerFactory.getDefaultAlgorithm()
@@ -60,8 +47,6 @@ class MainActivity : AppCompatActivity() {
 
     private val grazUpcIp = "https://84.114.113.52:443"
 
-
-
     private class MyWebViewClient(context: Context) : WebViewClient() {
 
         private val tmf : TrustManagerFactory = initTrustStore(context)
@@ -73,13 +58,6 @@ class MainActivity : AppCompatActivity() {
             return false
         }
 
-        /*override fun onReceivedSslError(
-            view: WebView?,
-            handler: SslErrorHandler?,
-            error: SslError?
-        ) {
-           handler!!.proceed()
-        }*/
         override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler, error: SslError) {
             Log.d(TAG, "onReceivedSslError")
             var passVerify = false
@@ -90,14 +68,11 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val f: Field = cert.javaClass.getDeclaredField("mX509Certificate")
                     f.isAccessible = true
-                    //f.setAccessible(true)
 
-                    val chain = arrayOf(f.get(cert))
                     for (trustManager in tmf.getTrustManagers()) {
                         if (trustManager is X509TrustManager) {
                             val x509TrustManager: X509TrustManager = trustManager
                             try {
-                                //x509TrustManager.checkServerTrusted(chain, "generic")
                                 x509TrustManager.checkServerTrusted(arrayOf(cert.x509Certificate), "RSA")
                                 passVerify = true
                                 break
@@ -128,7 +103,5 @@ class MainActivity : AppCompatActivity() {
         webv.loadUrl(grazUpcIp)
 
     }
-
-
 
 }
