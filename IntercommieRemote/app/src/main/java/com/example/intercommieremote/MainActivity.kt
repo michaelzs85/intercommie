@@ -46,6 +46,7 @@ fun initTrustStore(context: Context) : TrustManagerFactory {
 class MainActivity : AppCompatActivity() {
 
     private val grazUpcIp = "https://84.114.113.52:443"
+    private val distelhofWifiUri = "https://10.0.0.44"
 
     private class MyWebViewClient(context: Context) : WebViewClient() {
 
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity() {
 
         val myWebViewClient = MyWebViewClient(applicationContext)
         webv.webViewClient = myWebViewClient
-        webv.loadUrl(grazUpcIp)
+        webv.loadUrl(distelhofWifiUri)
 
     }
 

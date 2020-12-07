@@ -15,24 +15,24 @@ ESPWebServerSecure webserver(443);
 
 // Server certificate
 const char server_cert[] PROGMEM = R"EOF(-----BEGIN CERTIFICATE-----
-MIIDQjCCAioCFADEl2YHOqmk0txGyfWbOGpvbIQWMA0GCSqGSIb3DQEBCwUAMFUx
+MIIDPjCCAiYCFADEl2YHOqmk0txGyfWbOGpvbIQXMA0GCSqGSIb3DQEBCwUAMFUx
 CzAJBgNVBAYTAkFUMQ8wDQYDVQQIDAZzdHlyaWExHzAdBgNVBAoMFlVsdGltYXRl
-IEF1dGhvcml0eSBJbmMxFDASBgNVBAMMC0ludGVyY29tbWllMB4XDTIwMTEzMDE5
-MTkxOVoXDTMxMTExMzE5MTkxOVowZjELMAkGA1UEBhMCQVQxDzANBgNVBAgMBlN0
+IEF1dGhvcml0eSBJbmMxFDASBgNVBAMMC0ludGVyY29tbWllMB4XDTIwMTIwNjIy
+NTM0MVoXDTMxMTExOTIyNTM0MVowYjELMAkGA1UEBhMCQVQxDzANBgNVBAgMBlN0
 eXJpYTENMAsGA1UEBwwER3JhejEfMB0GA1UECgwWVWx0aW1hdGUgQXV0aG9yaXR5
-IEluYzEWMBQGA1UEAwwNODQuMTE0LjExMy41MjCCASIwDQYJKoZIhvcNAQEBBQAD
-ggEPADCCAQoCggEBAMInA7dLJ5ZDOn+FmdEm38flhDGzknHogO/LmP+mijglAU3B
-Ez2xR/cBFcIBV+J/qPz07K1pZAHJe6pAYreNUaU1mvpW0tUVNbvsZ8fMyJId1yGQ
-3f2jZItpm7ctk6/y94HNEKdcxr3tm66vhxThyxN0GG8j3vKuNsWO9qZZhrxqo6Ta
-1QDUMb9bqQi6uvYaemKq0ZNX/fUNQt40n+MH98cAWqjbvwc6mkbqLYzavN575QNc
-lf/aqUjvD9asUg1xjCidycoXSPwPFJZcTfh39vEI2Om/Bd0KjC1N494ipmsc+ioe
-3ivSqqdAaiuCQlQ4HkAHRCnU57eBthPCmXiG4ocCAwEAATANBgkqhkiG9w0BAQsF
-AAOCAQEAhW8YMIFgyRiSMyHsJqMT+yXpHId1wgsSP87CsoLkVSl0vz2iT0qxuS/A
-Pt0kAo88ZqyV4Z0bdM7mYncBv+s/TNvp6Zfs5XThXS3EABGI69IyOhyyHlDLQN1j
-if48aKKiHVkkaJAD3TNChwuV51dYvD152IObGM99wujwxwSxpQrM1wHcRlQ5qXbl
-U8DDISWxkjkHvbOhcg9G3Zr9ZLHtz3jmSe6yH0AMs9kxqX0hP7tra+GStDVJVZ3h
-dpMkW0em99r+AUr23CP/JYFcCmbVok1qWymzvC6iUK2vQOSiszUkT69tO2f3wzMM
-+8GQJR5ATN7K47ra14V+k3vX3pCX6Q==
+IEluYzESMBAGA1UEAwwJMTAuMC4wLjQ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIBCgKCAQEAuwFR3h4gwliex7kCtuRuOE8XfzkO7PnT4woO5FfYuPOWloLG+Sz+
+uofnE1a7u+vLE/JLDWh7AwTW1EBiNomtV/iRSN/HgkFX3djE7rUhT0m3pS7rX6cn
+NgdUcUAyEPvvsy9EUiOXu1jDa1conVKObktWLCWiF0lHRDqDh7sz2zPME2PRZPm9
+Xb1eywoq93knUO9Rvbbeqhg7ST1iYHz+MlRerBCQozt7YDjjPyeGpmxegYzaGULl
+uwesMaq/kQD3vBG0DpWHHbIHzLMLlTFvUImuGMKGInZhTgt7J5pDle7f9c6aYMW3
+HEkxl9+Iy380emDK1/d6icQl8TXouFdjiwIDAQABMA0GCSqGSIb3DQEBCwUAA4IB
+AQAqEA8g8+6VYDyqpQ2pb4BLoqc1bDtnbwDF83KTydbQc93NwCr9RkfIdGjX7eaR
+aubtlKSmJs7L0dvWxL/8F332edeadNRxdMbaPx/E/E7Wf1JfYdY/rlYZbptKNlsz
+cp9C9t/h7sG3k661N+bCnCF77nUGWeMt9SQX978+XX9JRm/NzTGGNs3dvowlNFfB
+Dwva2T0060+kEQGYll8tAoX86U4VkZTL0h1bAlr5Awz/g5/IVbbvv7SUcxqguUF2
+/oEqP7SX2smyfY991Cew0V7hyFaZ8aPVLGIcfaTkaOiNbNwDBYtd/DT42pipLT3h
+7LIPVa+BV5TqhjjCaQ/Pb8Gw
 -----END CERTIFICATE-----
 )EOF";
 
@@ -123,7 +123,8 @@ struct MainProg
         pinMode(SCL, OUTPUT);
 
           
-        WiFi.begin("Mario ist besser als Yoshi", "666fghjkl666A");
+        //WiFi.begin("Mario ist besser als Yoshi", "666fghjkl666A");
+        WiFi.begin("ZS-M_Home", "666fghjkl666");
         
         while (WiFi.status() != WL_CONNECTED) {
             delay(1000);
@@ -153,16 +154,16 @@ struct MainProg
         // webserver.getServer().setRSACert(new X509List(server_cert), new PrivateKey(server_private_key));
 
         webserver.on("/", [](){webserver.send(200, "text/html", html_text);});
-        webserver.on("/relay=on", [&](){/*webserver.send(200, "text/plain", "success");*/ relay.on();});
-        webserver.on("/relay=off", [&](){/*webserver.send(200, "text/plain", "success");*/ relay.off();});
-
+        webserver.on("/relay=on", HTTP_POST,  [&](){webserver.send(200, "text/plain", "relay.on"); relay.on();});
+        webserver.on("/relay=off", HTTP_POST,  [&](){webserver.send(200, "text/plain", "relay.off"); relay.off();});
 
         webserver.begin();
 
 
         // HTTP Server forwarding to https only
         webserverHTTP.on("/", [](){
-                webserverHTTP.sendHeader("Location", String("https://84.114.113.52"), true);
+                // webserverHTTP.sendHeader("Location", String("https://84.114.113.52"), true);
+                webserverHTTP.sendHeader("Location", String("https://10.0.0.44"), true);
                 webserverHTTP.send(301, "text/plain", "");
             });
         webserverHTTP.begin();
